@@ -61,7 +61,7 @@ open class SwipeMenuViewController: UIViewController, SwipeMenuViewDelegate, Swi
         return children[index].title ?? ""
     }
     
-    open func swipeMenuView(_ swipeMenuView: SwipeMenuView, hasNotificationForPageAt index: Int) -> Bool {
+    open func swipeMenuView(_ swipeMenuView: SwipeMenuView, hasNotificationPageAt index: Int) -> Bool {
         return false
     }
 

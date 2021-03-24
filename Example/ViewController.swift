@@ -71,7 +71,7 @@ final class ViewController: SwipeMenuViewController {
         return children[index].title ?? ""
     }
     
-    override func swipeMenuView(_ swipeMenuView: SwipeMenuView, hasNotificationForPageAt index: Int) -> Bool {
+    override func swipeMenuView(_ swipeMenuView: SwipeMenuView, hasNotificationPageAt index: Int) -> Bool {
         return index % 2 == 1 ? true : false
     }
 

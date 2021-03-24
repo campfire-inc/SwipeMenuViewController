@@ -182,8 +182,8 @@ public protocol SwipeMenuViewDataSource: class {
     /// Return strings to be displayed at the tab in `SwipeMenuView`.
     func swipeMenuView(_ swipeMenuView: SwipeMenuView, titleForPageAt index: Int) -> String
     
-    /// Return a value to be
-    func swipeMenuView(_ swipeMenuView: SwipeMenuView, hasNotificationForPageAt index: Int) -> Bool
+    /// Returns whether or not the tab in `SwipeMenuView` has notifications.
+    func swipeMenuView(_ swipeMenuView: SwipeMenuView, hasNotificationPageAt index: Int) -> Bool
 
     /// Return a ViewController to be displayed at the page in `SwipeMenuView`.
     func swipeMenuView(_ swipeMenuView: SwipeMenuView, viewControllerForPageAt index: Int) -> UIViewController
@@ -407,7 +407,7 @@ extension SwipeMenuView: TabViewDelegate, TabViewDataSource {
     }
     
     public func tabView(_ tabView: TabView, hasNotificationForItemAt index: Int) -> Bool? {
-        return dataSource?.swipeMenuView(self, hasNotificationForPageAt: index)
+        return dataSource?.swipeMenuView(self, hasNotificationPageAt: index)
     }
 }
 

@@ -4,11 +4,11 @@ final class TabItemView: UIView {
 
     private(set) var titleLabel: UILabel = UILabel()
     private var notificationBadgeView: UIView = UIView()
+    let notificationBadgeViewSize: CGSize = CGSize(width: 6, height: 6)
 
     public var textColor: UIColor = UIColor(red: 140/255, green: 140/255, blue: 140/255, alpha: 1.0)
     public var selectedTextColor: UIColor = .white
     public var notificationBadgeColor: UIColor = .red
-    public var titleLabelBoundingRect: CGRect = .zero
 
     public var isSelected: Bool = false {
         didSet {
@@ -63,12 +63,13 @@ final class TabItemView: UIView {
     private func setupNotificationBadgeView() {
         notificationBadgeView = UIView()
         notificationBadgeView.backgroundColor = .red
-        notificationBadgeView.layer.cornerRadius = 3
+        notificationBadgeView.layer.cornerRadius = notificationBadgeViewSize.height / 2
         notificationBadgeView.clipsToBounds = true
         addSubview(notificationBadgeView)
     }
     
     private func layoutLabel() {
+        
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: self.topAnchor),

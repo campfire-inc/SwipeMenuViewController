@@ -27,6 +27,7 @@ public protocol TabViewDataSource: class {
     /// Return strings to be displayed at the tab in `TabView`.
     func tabView(_ tabView: TabView, titleForItemAt index: Int) -> String?
     
+    /// Returns whether or not the tab in `TabView` has notifications.
     func tabView(_ tabView: TabView, hasNotificationForItemAt index: Int) -> Bool?
 }
 
@@ -260,7 +261,10 @@ open class TabView: UIScrollView {
                     return
                 }
                 let textFrame = (title as NSString).boundingRect(with: tabItemView.titleLabel.frame.size, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: options.itemView.font], context: nil)
-                tabItemView.notificationBadgeViewFrame = .init(x: textFrame.width + (adjustCellSize.width - textFrame.width) / 2 + 3, y: adjustCellSize.height / 2 - 6, width: 6, height: 6)
+                tabItemView.notificationBadgeViewFrame = .init(x: textFrame.width + (adjustCellSize.width - textFrame.width) / 2 + 3,
+                                                               y: adjustCellSize.height / 2 - tabItemView.notificationBadgeViewSize.height,
+                                                               width: tabItemView.notificationBadgeViewSize.width,
+                                                               height: tabItemView.notificationBadgeViewSize.height)
 
                 containerView.addArrangedSubview(tabItemView)
             }
