@@ -1,6 +1,7 @@
 import UIKit
 
 open class SwipeMenuViewController: UIViewController, SwipeMenuViewDelegate, SwipeMenuViewDataSource {
+    
     open var swipeMenuView: SwipeMenuView!
 
     open override func viewDidLoad() {

@@ -257,14 +257,17 @@ open class TabView: UIScrollView {
                     adjustCellSize = CGSize(width: (frame.width - options.margin * 2) / CGFloat(itemCount), height: tabItemView.frame.size.height)
                 }
                 tabItemView.frame.size = adjustCellSize
-                guard let title = dataSource.tabView(self, titleForItemAt: index) else {
-                    return
+                
+                if let title = dataSource.tabView(self, titleForItemAt: index) {
+                    let textFrame = (title as NSString).boundingRect(with: tabItemView.titleLabel.frame.size,
+                                                                     options: .usesLineFragmentOrigin,
+                                                                     attributes: [NSAttributedString.Key.font: options.itemView.font],
+                                                                     context: nil)
+                    tabItemView.notificationBadgeViewFrame = .init(x: textFrame.width + (adjustCellSize.width - textFrame.width) / 2 + 6,
+                                                                   y: adjustCellSize.height / 2 - tabItemView.notificationBadgeViewSize.height,
+                                                                   width: tabItemView.notificationBadgeViewSize.width,
+                                                                   height: tabItemView.notificationBadgeViewSize.height)
                 }
-                let textFrame = (title as NSString).boundingRect(with: tabItemView.titleLabel.frame.size, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: options.itemView.font], context: nil)
-                tabItemView.notificationBadgeViewFrame = .init(x: textFrame.width + (adjustCellSize.width - textFrame.width) / 2 + 3,
-                                                               y: adjustCellSize.height / 2 - tabItemView.notificationBadgeViewSize.height,
-                                                               width: tabItemView.notificationBadgeViewSize.width,
-                                                               height: tabItemView.notificationBadgeViewSize.height)
 
                 containerView.addArrangedSubview(tabItemView)
             }

@@ -62,7 +62,7 @@ final class TabItemView: UIView {
     
     private func setupNotificationBadgeView() {
         notificationBadgeView = UIView()
-        notificationBadgeView.backgroundColor = .red
+        notificationBadgeView.isHidden = true
         notificationBadgeView.layer.cornerRadius = notificationBadgeViewSize.height / 2
         notificationBadgeView.clipsToBounds = true
         addSubview(notificationBadgeView)
