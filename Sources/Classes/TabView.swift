@@ -26,6 +26,8 @@ public protocol TabViewDataSource: class {
 
     /// Return strings to be displayed at the tab in `TabView`.
     func tabView(_ tabView: TabView, titleForItemAt index: Int) -> String?
+    
+    func tabView(_ tabView: TabView, hasNotificationForItemAt index: Int) -> Bool?
 }
 
 open class TabView: UIScrollView {
@@ -220,6 +222,10 @@ open class TabView: UIScrollView {
                 tabItemView.textColor = options.itemView.textColor
                 tabItemView.selectedTextColor = options.itemView.selectedTextColor
             }
+            if let hasNotification = dataSource.tabView(self, hasNotificationForItemAt: index) {
+                tabItemView.notificationBadgeColor = options.itemView.notificationBadgeColor
+                tabItemView.hasNotification = hasNotification
+            }
 
             tabItemView.isSelected = index == currentIndex
 
@@ -250,6 +256,11 @@ open class TabView: UIScrollView {
                     adjustCellSize = CGSize(width: (frame.width - options.margin * 2) / CGFloat(itemCount), height: tabItemView.frame.size.height)
                 }
                 tabItemView.frame.size = adjustCellSize
+                guard let title = dataSource.tabView(self, titleForItemAt: index) else {
+                    return
+                }
+                let textFrame = (title as NSString).boundingRect(with: tabItemView.titleLabel.frame.size, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: options.itemView.font], context: nil)
+                tabItemView.notificationBadgeViewFrame = .init(x: textFrame.width + (adjustCellSize.width - textFrame.width) / 2 + 3, y: adjustCellSize.height / 2 - 6, width: 6, height: 6)
 
                 containerView.addArrangedSubview(tabItemView)
             }
