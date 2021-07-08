@@ -71,7 +71,7 @@ final class ViewController: SwipeMenuViewController {
         return children[index].title ?? ""
     }
     
-    override func swipeMenuView(_ swipeMenuView: SwipeMenuView, itemViweForPageAt index: Int) -> TabItemViewProtocol? {
+    override func swipeMenuView(_ swipeMenuView: SwipeMenuView, itemViewForPageAt index: Int) -> TabItemViewProtocol? {
         let tabItemView = TabItemView()
         tabItemView.backgroundColor = .red
         return tabItemView
