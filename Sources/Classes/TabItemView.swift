@@ -11,21 +11,6 @@ public protocol TabItemViewProtocol: UIView {
     var hasNotification: Bool { get set }
 }
 
-public extension TabItemViewProtocol {
-    var notificationBadgeViewSize: CGSize {
-        return .zero
-    }
-    var notificationBadgeColor: UIColor {
-        return .red
-    }
-    var notificationBadgeViewFrame: CGRect {
-        return .zero
-    }
-    var hasNotification: Bool {
-        return false
-    }
-}
-
 final class TabItemView: UIView, TabItemViewProtocol {
 
     private(set) var titleLabel: UILabel = UILabel()
