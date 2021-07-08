@@ -62,8 +62,8 @@ open class SwipeMenuViewController: UIViewController, SwipeMenuViewDelegate, Swi
         return children[index].title ?? ""
     }
     
-    open func swipeMenuView(_ swipeMenuView: SwipeMenuView, itemViweForPageAt index: Int) -> TabItemViewProtocol? {
-        nil
+    open func swipeMenuView(_ swipeMenuView: SwipeMenuView, itemViewForPageAt index: Int) -> TabItemViewProtocol? {
+        return nil
     }
     
     open func swipeMenuView(_ swipeMenuView: SwipeMenuView, viewControllerForPageAt index: Int) -> UIViewController {

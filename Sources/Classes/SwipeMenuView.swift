@@ -185,10 +185,16 @@ public protocol SwipeMenuViewDataSource: AnyObject {
     /// Return strings to be displayed at the tab in `SwipeMenuView`.
     func swipeMenuView(_ swipeMenuView: SwipeMenuView, titleForPageAt index: Int) -> String
     
-    func swipeMenuView(_ swipeMenuView: SwipeMenuView, itemViweForPageAt index: Int) -> TabItemViewProtocol?
-    
     /// Return a ViewController to be displayed at the page in `SwipeMenuView`.
     func swipeMenuView(_ swipeMenuView: SwipeMenuView, viewControllerForPageAt index: Int) -> UIViewController
+    
+    func swipeMenuView(_ swipeMenuView: SwipeMenuView, itemViewForPageAt index: Int) -> TabItemViewProtocol?
+}
+
+public extension SwipeMenuViewDataSource {
+    func swipeMenuView(_ swipeMenuView: SwipeMenuView, itemViewForPageAt index: Int) -> TabItemViewProtocol? {
+        return nil
+    }
 }
 
 // MARK: - SwipeMenuView
@@ -409,7 +415,7 @@ extension SwipeMenuView: TabViewDelegate, TabViewDataSource {
     }
     
     public func tabView(_ tabView: TabView, viewForItemAt index: Int) -> TabItemViewProtocol? {
-        return dataSource?.swipeMenuView(self, itemViweForPageAt: index)
+        return dataSource?.swipeMenuView(self, itemViewForPageAt: index)
     }
 }
 
