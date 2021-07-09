@@ -85,6 +85,9 @@ public struct SwipeMenuViewOptions {
 
         /// TabView height. Defaults to `44.0`.
         public var height: CGFloat = 44.0
+        
+        /// TabView.bottom spacer. Defaults to `0`
+        public var bottom: CGFloat = 0
 
         /// TabView side margin. Defaults to `0.0`.
         public var margin: CGFloat = 0.0
@@ -367,7 +370,7 @@ open class SwipeMenuView: UIView {
         contentScrollView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            contentScrollView.topAnchor.constraint(equalTo: self.topAnchor, constant: options.tabView.height),
+            contentScrollView.topAnchor.constraint(equalTo: self.topAnchor, constant: options.tabView.height + options.tabView.bottom),
             contentScrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             contentScrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             contentScrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor)

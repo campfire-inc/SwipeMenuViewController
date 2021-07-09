@@ -39,6 +39,8 @@ class PopupViewController: UIViewController {
     @IBOutlet weak var tabItemViewWidthSlider: UISlider!
     @IBOutlet weak var tabAdditionSegmentedControl: UISegmentedControl!
     @IBOutlet weak var contentScrolEnabledSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var tabItemViewBottomLabel: UILabel!
+    @IBOutlet weak var tabItemViewBottomSlider: UISlider!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +75,7 @@ class PopupViewController: UIViewController {
 
         tabItemViewWidthSlider.value = Float(options.tabView.itemView.width)
         tabItemViewWidthLabel.text = "Tab Item Width: \(String(format: "%.0f", Float(options.tabView.itemView.width)))"
+        tabItemViewBottomLabel.text = "Tab View Bottom: \(String(format: "", Float(options.tabView.bottom)))"
 
         switch options.tabView.addition {
         case .underline:
@@ -166,6 +169,10 @@ class PopupViewController: UIViewController {
 
     @IBAction func changeTabItemWidthSlider(_ sender: UISlider) {
         options.tabView.itemView.width = CGFloat(sender.value)
+    }
+    
+    @IBAction func changeTabItemBottomSlider(_ sender: UISlider) {
+        options.tabView.bottom = CGFloat(sender.value)
     }
 
     @IBAction func changeTabAddition(_ sender: UISegmentedControl) {
