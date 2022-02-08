@@ -78,8 +78,10 @@ open class TabView: UIScrollView {
         if options.style == .segmented {
             widthConstraint.constant = options.margin * -2 - safeAreaInsets.left - safeAreaInsets.right
         }
-
-        layoutIfNeeded()
+        
+        DispatchQueue.main.async {
+            self.layoutIfNeeded()
+        }
     }
 
     fileprivate func focus(on target: UIView, animated: Bool = true) {
